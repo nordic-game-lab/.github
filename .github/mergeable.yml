@@ -1,0 +1,59 @@
+version: 2
+mergeable:
+  - when: schedule.repository
+    validate:
+      - do: stale
+        days: 20
+        type: pull_request, issues
+    pass:
+      - do: comment
+        payload:
+          body: This is old. Is it still relevant?
+          
+  - when: pull_request.opened
+    name: "Greet a contributor"
+    validate: []
+    pass:
+      - do: comment
+        payload:
+          body: >
+            Thanks for creating a pull request! A maintainer will review your changes shortly. Please don't be discouraged if it takes a while.
+            
+  - when: pull_request.*, pull_request_review.*
+    validate:
+      - do: title
+        # Enforce semantic release convention.
+        must_include:
+          regex: ^(feat|docs|chore|fix|refactor|test|style|perf|improvement|CON)(\(\w+\))?:.+$
+          message: Semantic release conventions must be followed.
+        # All todo check boxes must be checked.
+      - do: description
+        must_exclude:
+          regex: \[ \]
+          message: There are incomplete TODO task(s) unchecked.
+      - do: approvals
+        min:
+          count: 1
+        or:
+          - required:
+              reviewers: [ hi5a ]
+      - do: or
+        # if the PR is a new feature or a fix, it must be logged in the changelog
+        validate:
+          - do: and
+            validate:
+              - do: title
+                must_include:
+                  regex: ^(feat|fix)(\(\w+\))?:.+$
+              - do: changeset
+                must_include:
+                  regex: 'changes/CHANGELOG.md'
+                  message: 'new features or fixes needed to be logged to the changelog'
+          - do: title
+            must_exclude:
+              regex: ^(feat|fix)(\(\w+\))?:.+$
+              message: 'new features or fixes needed to be logged to the changelog'
+    pass:
+
+      - do: checks
+        status: 'success'
