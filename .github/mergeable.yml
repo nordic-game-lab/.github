@@ -9,15 +9,7 @@ mergeable:
       - do: comment
         payload:
           body: This is old. Is it still relevant?
-          
-  - when: pull_request.opened
-    name: "Greet a contributor"
-    validate: []
-    pass:
-      - do: comment
-        payload:
-          body: >
-            Thanks for creating a pull request! A maintainer will review your changes shortly. Please don't be discouraged if it takes a while.
+
             
   - when: pull_request.*, pull_request_review.*
     validate:
@@ -31,12 +23,7 @@ mergeable:
         must_exclude:
           regex: \[ \]
           message: There are incomplete TODO task(s) unchecked.
-      - do: approvals
-        min:
-          count: 1
-        or:
-          - required:
-              reviewers: [ hi5a ]
+         
       - do: or
         # if the PR is a new feature or a fix, it must be logged in the changelog
         validate:
