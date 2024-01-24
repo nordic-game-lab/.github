@@ -9,4 +9,4 @@
 
 ## Reporting a Vulnerability
 
-Email security@nordicgamelab.org
+Visit [vulndisclosure](vulndisclosure.nordicgamelab.org) to report any vulnerabilities or security concerns
