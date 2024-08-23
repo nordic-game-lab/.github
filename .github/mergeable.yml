@@ -10,7 +10,8 @@ mergeable:
     name: 'automerge pull request if pr has label automerge'
     validate:
       - do: label
-        contains: automerge
+        begins_with: 
+          match: automerge
     pass:
       - do: comment
         payload: /aviator merge
