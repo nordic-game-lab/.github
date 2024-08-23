@@ -11,7 +11,7 @@ mergeable:
     validate:
       - do: label
         begins_with: 
-          match: automerge
+          match: 'automerge'
     pass:
       - do: comment
         payload: 
