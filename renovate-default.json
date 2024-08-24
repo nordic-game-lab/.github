@@ -9,5 +9,6 @@
     "minor": {"labels": ["automerge"]},
     "patch": {"labels": ["automerge"]},
     "bumpVersion": "patch",
-    "major": {"dependencyDashboardApproval": true}
+    "major": {"dependencyDashboardApproval": true},
+    "includeForks": true
   }
