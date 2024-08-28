@@ -6,8 +6,8 @@
       {"labels": ["linting"], "matchPackageNames": ["/eslint/"]},
       {"matchDepTypes": ["optionalDependencies"], "addLabels": ["optional"]}
     ],
-    "minor": {"labels": ["automerge"]},
-    "patch": {"labels": ["automerge"]},
+    "minor": {"labels": ["automerge"], "automerge": true},
+    "patch": {"labels": ["automerge"], "automerge": true},
     "bumpVersion": "patch",
     "major": {"dependencyDashboardApproval": true},
     "includeForks": true
