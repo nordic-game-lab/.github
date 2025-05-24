@@ -6,16 +6,6 @@ mergeable:
         no_empty:
           enabled: true
           message: Description matter and should not be empty. Provide detail with **what** was changed, **why** it was changed, and **how** it was changed.
-  - when: pull_request.*
-    name: 'automerge pull request if pr has label automerge'
-    validate:
-      - do: label
-        begins_with: 
-          match: 'automerge'
-    pass:
-      - do: comment
-        payload: 
-          body: /aviator merge
   - when: schedule.repository
     validate:
       - do: stale
