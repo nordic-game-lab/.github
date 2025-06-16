@@ -3,7 +3,7 @@
     "extends": ["config:recommended"],
     "labels": ["dependencies"],
     "packageRules": [
-      {"labels": ["linting"], "matchPackageNames": ["/eslint/"]},
+      {"labels": ["Deps: linting"], "matchPackageNames": ["/eslint/"]},
       {"matchDepTypes": ["optionalDependencies"], "addLabels": ["optional"]}
     ],
     "minor": {"labels": ["automerge"], "automerge": true},
